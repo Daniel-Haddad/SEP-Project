@@ -1,0 +1,59 @@
+# =============================================================
+#  .gitignore para proyectos Vivado — IEE2463 SEP
+#  Copiar a la raíz del repositorio (junto al .xpr o sobre él).
+# =============================================================
+
+# --- Carpetas generadas por Vivado (se regeneran al abrir y compilar) ---
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.gen/
+*.Xil/
+.Xil/
+
+# --- Logs y journals ---
+*.jou
+*.log
+*.str
+vivado*.backup.jou
+vivado*.backup.log
+webtalk*.jou
+webtalk*.log
+usage_statistics_webtalk*
+
+# --- Salidas de implementación ---
+*.bit
+*.bin
+*.ltx
+*.mmi
+*.rpt
+
+# --- Vitis / SDK ---
+.metadata/
+*.sdk/
+Debug/
+Release/
+_ide/
+
+# --- Sistema operativo / editores ---
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+*.swp
+*~
+
+# =============================================================
+#  QUÉ SÍ SE VERSIONA (no tocar, aquí solo como recordatorio):
+#    *.vhd   fuentes y testbenches
+#    *.xdc   constraints
+#    *.xpr   proyecto de Vivado
+#    *.bd    block design
+#    *.tcl   script de reconstrucción (File > Project > Write Tcl)
+#    ip/     IP cores propios (carpeta con su component.xml)
+#    docs/   diagrama, CONTEXT.md, REFERENCIAS.md
+#
+#  Archivos > 100 MB: GitHub los rechaza. Usar Git LFS.
+# =============================================================

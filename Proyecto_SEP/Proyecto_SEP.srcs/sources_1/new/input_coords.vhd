@@ -1,0 +1,1 @@
+-- logica de captura 3 bits de los switches al apretar un boton --
