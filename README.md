@@ -82,8 +82,11 @@ y solo una de las dos puede cambiarse por dos AC, promediando sus notas. O sea q
 pide las tres AO.
 
     check 1   diagrama, 50%        obligatorio siempre, no necesita código
-    check 2   slot 1 = AO1         battleship_top instanciando 4 componentes
-    check 3   slot 2 = ver abajo   AC4+AC6, o AO2
+    check 2   slot 1 = AO1         el design_1.vhd que genera el wrapper, y battleship_top
+    check 3   slot 2 = AO2         tres IP cores propios con genéricos en el block design
+
+Como la presentación exige block design con bloques propios, AO2 quedó obligatoria y ya no tiene
+sentido reemplazar un slot por dos AC. Las dos salen del mismo trabajo.
 
 Qué archivo cumple qué:
 
@@ -132,35 +135,45 @@ Si falta una AO en la entrega final el tramo de implementación baja a 2 puntos 
 y eso pega en la nota del video y en la de códigos. Por eso AO3 no se puede dejar para el final.
 
 
-## cómo se arma, dos niveles
+## block design e IP cores
 
-AO1 y AO2 piden jerarquías distintas. AO1 pide `components` dentro de una entity, o sea jerarquía
-escrita en VHDL. AO2 pide IP cores en el block design, o sea jerarquía armada con el mouse.
-Conectar bloques en el `.bd` no cuenta para AO1.
+La presentación exige mostrar el block design con bloques propios, así que AO2 pasa a ser
+obligatoria para la entrega parcial. Ya no alcanza con un solo top VHDL.
 
-Para que no se dupliquen, va en dos niveles:
+La estructura es un proyecto de Vivado por cada IP core, más el proyecto principal que contiene
+el block design. Es lo que hace la ayudantía 03 y lo que pide el enunciado para el zip final,
+que exige una carpeta adicional por cada IP core creado.
 
-    design_1  (block design)              AO2 vive aca
-    ├── battleship_top    (IP core)       AO1 vive adentro de este
-    │   ├── clk_divider   (component)
-    │   ├── debounce      (component)
-    │   ├── coord_input   (component)
-    │   └── led_driver    (component)
-    ├── board_mem         (IP core)
-    ├── axi_status_slave  (IP core)
-    ├── axi_config_slave  (IP core)
-    └── ATG x2, ILA, VIO                  bloques de Xilinx
+    SEP-Project/
+    ├── Proyecto_SEP/        proyecto principal, aqui vive el block design
+    └── IPCores/
+        ├── clk_divider/
+        │   ├── clk_divider.xpr
+        │   └── clk_divider.srcs/
+        │       ├── component.xml                  esto lo convierte en IP
+        │       ├── sources_1/new/clk_divider.vhd
+        │       └── sim_1/new/tb_clk_divider.vhd
+        ├── coord_input/
+        └── ...
 
-`battleship_top` instancia sus cuatro componentes en VHDL y con eso cierra AO1. Después se
-empaqueta entero como un IP core y se suelta en el block design junto a los otros tres, que son
-los de AO2. Si además empaquetáramos `clk_divider` por separado, quedaría uno suelto en el `.bd`
-y otro escondido dentro del top, y la rúbrica descuenta por bloques basura.
+El flujo para cada IP core es: proyecto nuevo, escribir el vhd, simularlo, Tools > Create and
+Package New IP, y queda el component.xml. Después en el proyecto principal se agrega la carpeta
+IPCores como IP repository, y los bloques aparecen en el catálogo listos para arrastrar.
 
-Es el mismo esquema del proyecto de ejemplo del curso.
+La prueba de AO2 es que al hacer doble click sobre el bloque en el block design se abre una
+ventana de configuración con el genérico. Si no aparece, el empaquetado no lo tomó.
 
-Para el avance, si el slot 2 es AC4+AC6 no hace falta el block design: todo puede vivir bajo un
-solo top VHDL. Igual conviene escribir todos los módulos con genéricos desde ahora, porque eso
-es lo que permite empaquetarlos después sin reescribir nada.
+Sobre AO1. Al hacer Create HDL Wrapper, Vivado genera dos archivos. El `design_1_wrapper.vhd`
+declara un solo component y conecta con los pines. El `design_1.vhd` es el block design traducido
+a VHDL, y ese declara e instancia un component por cada bloque que pusimos. Eso es literalmente
+lo que pide AO1, y sale sin escribir una línea.
+
+El detalle es que ese código lo genera Vivado, no nosotros. Por eso conviene además que
+`battleship_top.vhd` instancie sus componentes a mano: AO1 queda cubierta por los dos lados y se
+puede explicar de cualquiera de las dos formas cuando pregunten.
+
+Los bloques de Xilinx como el ATG, el ILA o el VIO pueden estar en el block design, pero no
+cuentan para AO2: el enunciado pide packages para incorporar nuestros códigos.
 
 
 ## archivos
