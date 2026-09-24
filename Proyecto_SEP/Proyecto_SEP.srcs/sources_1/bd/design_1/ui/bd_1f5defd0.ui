@@ -1,13 +1,27 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"1.75",
-   "Default View_TopLeft":"-339,-367",
+   "Default View_ScaleFactor":"1.25",
+   "Default View_TopLeft":"-146,-542",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:9.0 non-TLS
 #  -string -flagsOSRD
-preplace inst clk_divider_0 -pg 1 -lvl 1 -x 90 -y -140 -defaultsOSRD
-levelinfo -pg 1 0 90 180
-pagesize -pg 1 -db -bbox -sgen 0 -200 180 120
+preplace port clk -pg 1 -lvl 0 -x -20 -y -440 -defaultsOSRD
+preplace port led_tick -pg 1 -lvl 3 -x 580 -y -440 -defaultsOSRD
+preplace port btn0 -pg 1 -lvl 0 -x -20 -y -330 -defaultsOSRD
+preplace port pulso_0 -pg 1 -lvl 3 -x 580 -y -340 -defaultsOSRD
+preplace portBus sw -pg 1 -lvl 0 -x -20 -y -220 -defaultsOSRD
+preplace portBus valor -pg 1 -lvl 3 -x 580 -y -220 -defaultsOSRD
+preplace inst clk_divider_0 -pg 1 -lvl 2 -x 460 -y -440 -defaultsOSRD
+preplace inst debounce_0 -pg 1 -lvl 1 -x 270 -y -370 -defaultsOSRD
+preplace inst coord_input_0 -pg 1 -lvl 1 -x 270 -y -220 -defaultsOSRD
+preplace netloc clk_0_1 1 0 2 0J -440 NJ
+preplace netloc clk_divider_0_tick 1 2 1 N -440
+preplace netloc btn_0_1 1 0 1 10 -360n
+preplace netloc debounce_0_pulso 1 0 3 10 -300 370J -340 NJ
+preplace netloc sw_0_1 1 0 1 N -220
+preplace netloc coord_input_0_valor 1 1 2 NJ -220 NJ
+levelinfo -pg 1 -20 270 460 580
+pagesize -pg 1 -db -bbox -sgen -120 -610 690 120
 "
 }
-
+0
