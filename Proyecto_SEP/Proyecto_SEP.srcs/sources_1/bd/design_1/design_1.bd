@@ -13,7 +13,9 @@
       "clk_divider_0": "",
       "debounce_0": "",
       "coord_input_0": "",
-      "clk_divider_1": ""
+      "clk_divider_1": "",
+      "vio_0": "",
+      "ila_0": ""
     },
     "ports": {
       "clk": {
@@ -83,6 +85,36 @@
             "value": "15625000"
           }
         }
+      },
+      "vio_0": {
+        "vlnv": "xilinx.com:ip:vio:3.0",
+        "xci_name": "design_1_vio_0_0",
+        "parameters": {
+          "C_NUM_PROBE_IN": {
+            "value": "2"
+          }
+        }
+      },
+      "ila_0": {
+        "vlnv": "xilinx.com:ip:ila:6.2",
+        "xci_name": "design_1_ila_0_0",
+        "parameters": {
+          "C_ENABLE_ILA_AXI_MON": {
+            "value": "false"
+          },
+          "C_MONITOR_TYPE": {
+            "value": "Native"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "4"
+          },
+          "C_PROBE1_WIDTH": {
+            "value": "3"
+          },
+          "C_PROBE2_WIDTH": {
+            "value": "3"
+          }
+        }
       }
     },
     "nets": {
@@ -92,13 +124,16 @@
           "clk_divider_0/clk",
           "debounce_0/clk",
           "coord_input_0/clk",
-          "clk_divider_1/clk"
+          "clk_divider_1/clk",
+          "ila_0/clk",
+          "vio_0/clk"
         ]
       },
       "clk_divider_0_tick": {
         "ports": [
           "clk_divider_0/tick",
-          "led_tick"
+          "led_tick",
+          "ila_0/probe3"
         ]
       },
       "btn_0_1": {
@@ -110,19 +145,24 @@
       "debounce_0_pulso": {
         "ports": [
           "debounce_0/pulso",
-          "coord_input_0/confirmar"
+          "coord_input_0/confirmar",
+          "ila_0/probe0",
+          "vio_0/probe_in1"
         ]
       },
       "sw_0_1": {
         "ports": [
           "sw",
-          "coord_input_0/sw"
+          "coord_input_0/sw",
+          "ila_0/probe1"
         ]
       },
       "coord_input_0_valor": {
         "ports": [
           "coord_input_0/valor",
-          "valor"
+          "valor",
+          "ila_0/probe2",
+          "vio_0/probe_in0"
         ]
       },
       "clk_divider_1_tick": {
