@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xF64C42119A6ABC7A",
+      "boundary_crc": "0xEA21740DEE229378",
       "device": "xc7z010clg400-1",
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -12,7 +12,8 @@
     "design_tree": {
       "clk_divider_0": "",
       "debounce_0": "",
-      "coord_input_0": ""
+      "coord_input_0": "",
+      "clk_divider_1": ""
     },
     "ports": {
       "clk": {
@@ -47,9 +48,6 @@
       "btn0": {
         "direction": "I"
       },
-      "pulso_0": {
-        "direction": "O"
-      },
       "sw": {
         "direction": "I",
         "left": "2",
@@ -59,6 +57,9 @@
         "direction": "O",
         "left": "2",
         "right": "0"
+      },
+      "rgb_b": {
+        "direction": "O"
       }
     },
     "components": {
@@ -73,6 +74,15 @@
       "coord_input_0": {
         "vlnv": "xilinx.com:user:coord_input:1.0",
         "xci_name": "design_1_coord_input_0_0"
+      },
+      "clk_divider_1": {
+        "vlnv": "xilinx.com:user:clk_divider:1.0",
+        "xci_name": "design_1_clk_divider_1_0",
+        "parameters": {
+          "DIV": {
+            "value": "15625000"
+          }
+        }
       }
     },
     "nets": {
@@ -81,7 +91,8 @@
           "clk",
           "clk_divider_0/clk",
           "debounce_0/clk",
-          "coord_input_0/clk"
+          "coord_input_0/clk",
+          "clk_divider_1/clk"
         ]
       },
       "clk_divider_0_tick": {
@@ -99,7 +110,6 @@
       "debounce_0_pulso": {
         "ports": [
           "debounce_0/pulso",
-          "pulso_0",
           "coord_input_0/confirmar"
         ]
       },
@@ -113,6 +123,12 @@
         "ports": [
           "coord_input_0/valor",
           "valor"
+        ]
+      },
+      "clk_divider_1_tick": {
+        "ports": [
+          "clk_divider_1/tick",
+          "rgb_b"
         ]
       }
     }

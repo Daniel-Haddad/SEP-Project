@@ -57,3 +57,17 @@ desktop.ini
 #
 #  Archivos > 100 MB: GitHub los rechaza. Usar Git LFS.
 # =============================================================
+
+# --- Productos generados del block design (se regeneran con Generate Output Products) ---
+*.dcp
+*_stub.v
+*_stub.vhdl
+*_sim_netlist.v
+*_sim_netlist.vhdl
+*.hwdef
+*.hwh
+*.protoinst
+**/bd/*/ipshared/
+**/bd/*/hw_handoff/
+**/bd/*/ip/*/sim/
+**/bd/*/ip/*/synth/
